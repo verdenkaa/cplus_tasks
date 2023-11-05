@@ -2,16 +2,10 @@
 #include <cmath>
 using namespace std;
 
-auto f(int x){
-    return 5.4 * pow(x, 3) - 2.8 * pow(x, 2) - x + 1.6;
-}
-
 int main(){
-    int a, b, h;
-    cout << "Введите числа a b h: ";
-    cin >> a >> b >> h;
-    for (int i = a; i <= b; i = i + h){
-        cout << f(i) << endl;
+    int k = 0;
+    for (int i = 10; i < 100; i++){
+        if ((i % 2 != 0) && (i % 5 != 0)) k++;
     }
-
+    cout << "Количество чисел удоволетворяющих условию равно: " << k;
 }
