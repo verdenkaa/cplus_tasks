@@ -3,9 +3,9 @@
 using namespace std;
 
 int main(){
-    float x1, yl;
+    float x1, y1;
     cout << "Введиет координаты точки: ";
-    cin >> x1 >> yl;
+    cin >> x1 >> y1;
     bool x, y;
     if ((-1.0 <= x1 && x1 <= 0.0) || (4.0 <= x1 && x1 <= 6.0)){
     x = true;
