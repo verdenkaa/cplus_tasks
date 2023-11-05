@@ -2,26 +2,16 @@
 #include <cmath>
 using namespace std;
 
+auto f(int x){
+    return 5.4 * pow(x, 3) - 2.8 * pow(x, 2) - x + 1.6;
+}
+
 int main(){
-    int a, b, c, t1, t2, Dt, D;
-    cout << "Введите коффициенты a b c: ";
-    cin >> a >> b >> c;
-    Dt = pow(b, 2) - (-4 * a * c);
-    if (Dt > 0){
-        cout << "4 корня" << endl;
-        auto x0 = sqrt(abs((-1 * b - sqrt(Dt)) / (2 * a))) * -1;
-        auto x1 = sqrt(abs((-1 * b - sqrt(Dt)) / (2 * a)));
-        auto x2 = sqrt(abs((-1 * b + sqrt(Dt)) / (2 * a))) * -1;
-        auto x3 = sqrt(abs((-1 * b + sqrt(Dt)) / (2 * a)));
-        cout << "x1: " << x0 << " x2: " << x1 << endl;
-        cout << "x3: " << x2 << " x4: " << x3 << endl;
-    }else if (Dt == 0){
-        cout << "2 корня" << endl;
-        auto x0 = sqrt(abs((-1 * b) / (2 * a))) * -1;
-        auto x1 = sqrt(abs((-1 * b) / (2 * a)));
-        cout << "x1: " << x0 << " x2: " << x1;
-    }else{
-        cout << "корней нет";
+    int a, b, h;
+    cout << "Введите числа a b h: ";
+    cin >> a >> b >> h;
+    for (int i = a; i <= b; i = i + h){
+        cout << f(i) << endl;
     }
 
 }
