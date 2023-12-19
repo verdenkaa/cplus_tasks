@@ -33,20 +33,34 @@ int main()
         cin >> B[i];
     }
 
+    cout << endl;
+
     for (int i = 0; i < n; i++){
         C[i] = pow(A[i] + B[i], 2);
     }
 
     int max = C[0], min = C[0];
     for (int i = 1; i < n; i++){
-        if (C[i] < min) min = C[i];
-        if (C[i] > max) max = C[i];
+        if (C[i] < min) min = i;
+        if (C[i] > max) max = i;
     }
 
-    cout << "Подлежат удалению элементы: " << min << " " << max;
-
     for (int i = 0; i < n; i++){
-        cout << C[i];
+        cout << C[i] << " ";
+    }
+    cout << endl;
+    cout << min << max << endl;
+
+
+    for (int i = min; i < n; ++i){
+        C[i] = C[i + 1];}
+    for (int i = max - 1; i < n; ++i){
+        C[i] = C[i + 1];}
+
+
+    cout << "C:" << " ";
+    for (int i = 0; i < n; i++){
+        cout << C[i] << " ";
     }
 
 
