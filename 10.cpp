@@ -4,5 +4,13 @@ using namespace std;
 
 int main()
 {
-	cout << "OK";
+	int a;
+	cout << "Введите длинну массива: ";
+	cin >> a;
+	int A[a];
+	cout << "Введите массив";
+	for (int i = 0; i < a; i++){
+		cin A[i];
+	}
+	
 }
