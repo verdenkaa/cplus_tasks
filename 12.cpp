@@ -1,92 +1,32 @@
 #include <iostream>
 #include <cmath>
+#include <math . h>
 
 using namespace std;
+//метод касательных, метод простой итерации 
 
-const int MAX_SIZE = 100; // Максимальный размер матрицы
-
-// Функция для обмена значений двух переменных
-void swap(int& a, int& b) {
-    int temp = a;
-    a = b;
-    b = temp;
+double f( double x )
+{
+return ( x∗x−c o s ( 5∗ x ) ) ;
 }
 
-// Функция для сортировки столбцов матрицы по возрастанию модулей
-void sortColumns(int matrix[MAX_SIZE][MAX_SIZE], int n) {
-    for (int j = 0; j < n; ++j) {
-        for (int i = 0; i < n - 1; ++i) {
-            if (abs(matrix[i][j]) > abs(matrix[i + 1][j])) {
-                for (int k = 0; k < n; ++k) {
-                    swap(matrix[i][k], matrix[i + 1][k]);
-                }
-            }
-        }
-    }
+double f2( double x ){ //Вторая производная функции f(x).
+return (2+25∗ c o s ( 5∗ x ) ) ;
 }
 
-int main() {
-    int n;
-    cout << "Введите размер матрицы: ";
-    cin >> n;
+//Функция, реализующая метод касательных.
+int Tangent ( double a , double b , double c , double eps )
+{ in t k=0;
+if (f(a) ∗ f2 (a) > 0) c=a ;
+else c=b ;
+do{
+    c=c - f(c) / f1(c) ;
+    k++;
+}while ( fabs(f(c)) >= eps) ;
+return k;
+}
 
-    int matrix[MAX_SIZE][MAX_SIZE];
 
-    cout << "Введите элементы матрицы:" << endl;
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n; ++j) {
-            cin >> matrix[i][j];
-        }
-    }
-
-    // Сортировка столбцов по возрастанию модулей
-    sortColumns(matrix, n);
-
-    cout << "Измененная матрица 1:" << endl;
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n; ++j) {
-            cout << matrix[i][j] << " ";
-        }
-        cout << endl;
-    }
-
-    // Поменять местами элементы на диагоналях в столбцах
-    for (int j = 0; j < n; ++j) {
-        swap(matrix[j][j], matrix[n - j - 1][j]);
-    }
-
-    cout << "Измененная матрица 2:" << endl;
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n; ++j) {
-            cout << matrix[i][j] << " ";
-        }
-        cout << endl;
-    }
-
-    // Формирование вектора B и подсчет сумм составных значений
-    int B[MAX_SIZE] = {0};
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n; ++j) {
-            if (matrix[i][j] % 2 != 0) { // Если элемент составной
-                B[i] += matrix[i][j];
-            }
-        }
-    }
-
-    // Вывод результата
-    cout << "Измененная матрица:" << endl;
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n; ++j) {
-            cout << matrix[i][j] << " ";
-        }
-        cout << endl;
-    }
-
-    cout << "Вектор B:" << endl;
-    for (int i = 0; i < n; ++i) {
-        cout << B[i] << " ";
-    }
-    cout << endl;
-
-    return 0;
+int main(){
+	cout << "d-----------";
 }
