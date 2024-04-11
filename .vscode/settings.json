@@ -12,6 +12,7 @@
         "utility": "cpp",
         "valarray": "cpp",
         "optional": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "cmath": "cpp"
     }
 }
