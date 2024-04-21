@@ -13,6 +13,9 @@
         "valarray": "cpp",
         "optional": "cpp",
         "sstream": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "random": "cpp",
+        "*.tcc": "cpp",
+        "fstream": "cpp"
     }
 }
