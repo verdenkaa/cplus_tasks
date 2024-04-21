@@ -39,6 +39,11 @@ void makeC(int arrA[], int arrB[], int n) {
         }
     }
 
+    for (int i = 0; i < n; ++i) {
+        cout << arrC[i] << " ";
+    }
+    cout << endl;
+
     // Удаляем наибольший и наименьший элементы
     int newS= n - 2;
     int newArr[newS];

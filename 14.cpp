@@ -26,12 +26,35 @@ bool cont123(int num) {
 }
 
 int main() {
-    vector<int> X = {1, 2, 3, 4, 5, 6, 7, 8, 9}; // Пример массива X
-    vector<int> Z = {10, 11, 12, 13, 14, 15, 16, 17}; // Пример массива Z
+    vector<int> X = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    vector<int> Z = {10, 11, 12, 13, 14, 15, 16, 17};
+
+    /*vector<int> X, Z;
+    int n;
+
+    cout << "Введите размер массива X: ";
+    cin >> n;
+    cout << "Введите элементы массива X:" << endl;
+    for (int i = 0; i < n; ++i) {
+        int num;
+        cin >> num;
+        X.push_back(num);
+    }
+
+    
+    cout << "Введите размер массива Z: ";
+    cin >> n;
+    cout << "Введите элементы массива Z:" << endl;
+    for (int i = 0; i < n; ++i) {
+        int num;
+        cin >> num;
+        Z.push_back(num);
+    }*/
+
 
     vector<int> Y;
 
-    // Находим простые числа из массивов X и Z, содержащие цифры 1, 2 или 3, и переписываем их в массив Y
+    // Находим простые числа из массивов X и Z
     for (int i : X) {
         if (isPrime(i) && cont123(i)) {
             Y.push_back(i);
@@ -45,7 +68,7 @@ int main() {
 
     // Сортируем массив Y по убыванию
     sort(Y.begin(), Y.end());
-    
+
     cout << "Y: ";
     for (auto x : Y) 
         cout << x << " ";
