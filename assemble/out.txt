@@ -1,0 +1,14 @@
+include emu8086.inc
+
+DEFINE_SCAN_NUM
+DEFINE_PRINT_STRING
+DEFINE_PRINT_NUM
+DEFINE_PRINT_NUM_UNS ; ????????? ??? print_num.
+DEFINE_PTHIS
+DEFINE_CLEAR_SCREEN 
+
+VAG: GOTOXY 10,8
+CALL pthis
+DB 13, 10, 'Otvet: ', 0
+CALL print_num ; ???? ????? ? AX.
+RET 

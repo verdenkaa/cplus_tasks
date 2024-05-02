@@ -1,29 +1,43 @@
-.MODEL SMALL
-.STACK 100H
+include emu8086.inc    
+org 100h
 
 .DATA
-    message DB "Number: $"
-    num DB 7  ; Ваше число для вывода
-
+DEFINE_SCAN_NUM
+DEFINE_PRINT_STRING
+DEFINE_PRINT_NUM
+DEFINE_PRINT_NUM_UNS
+DEFINE_PTHIS
+DEFINE_CLEAR_SCREEN
+A DW 2
+B DW 10
+H DW 4
+Y DW 0
+ 
+;Y=2X+3
 .CODE
-MAIN PROC
-    MOV AX, @DATA
-    MOV DS, AX
+mov cx, A
+mov dx, H
 
-    ; Выводим сообщение
-    MOV AH, 09H
-    LEA DX, message
-    INT 21H
 
-    ; Выводим число
-    MOV DL, num
-    ADD DL, 30H  ; Преобразуем число в ASCII-код цифры
-    MOV AH, 02H
-    INT 21H
+while:
+        mov ax, cx
+        mov bx, 2 
+        mul bx 
+        mov dx, H
+        add ax, 3
+        add Y, ax
+        
+        mov bx, B
+        add cx, dx
+        cmp cx,bx 
+        jna while 
 
-    ; Завершаем программу
-    MOV AH, 4CH
-    INT 21H
-MAIN ENDP
 
-END MAIN
+mov ax, Y  
+
+
+CALL pthis
+DB 13, 10, 'Otvet: ', 0
+CALL print_num ; ???? ????? ? AX.
+RET 
+RET
