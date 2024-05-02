@@ -29,28 +29,6 @@ int main() {
     vector<int> X = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     vector<int> Z = {10, 11, 12, 13, 14, 15, 16, 17};
 
-    /*vector<int> X, Z;
-    int n;
-
-    cout << "Введите размер массива X: ";
-    cin >> n;
-    cout << "Введите элементы массива X:" << endl;
-    for (int i = 0; i < n; ++i) {
-        int num;
-        cin >> num;
-        X.push_back(num);
-    }
-
-    
-    cout << "Введите размер массива Z: ";
-    cin >> n;
-    cout << "Введите элементы массива Z:" << endl;
-    for (int i = 0; i < n; ++i) {
-        int num;
-        cin >> num;
-        Z.push_back(num);
-    }*/
-
 
     vector<int> Y;
 
