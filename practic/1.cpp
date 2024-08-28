@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 #include <algorithm>
 
 using namespace std;
@@ -8,41 +7,49 @@ int main() {
     int n;
     cout << "Количество элементов в массиве: ";
     cin >> n;
-    
-    vector<int> arr(n);
+
+    int arr[n];
     cout << "Введите элементы массива: ";
     for (int i = 0; i < n; ++i) {
         cin >> arr[i];
     }
-    
-    // Создаем массив, где элементами будут количество повторений индекса элемента
-    
-    int max = *max_element(arr.begin(), arr.end());
-    vector<int> count_arr(max);
 
-
-    for (int i=0; i < max; i++){
-            count_arr[i] = 0;
-        }
-    for (int num : arr) {
-        count_arr[num]++;
+    // Находим максимальный элемент, чтобы определить размер count_arr
+    int max_element = *std::max_element(arr, arr + n);
+    
+    // Создаем и инициализируем массив для подсчета количества вхождений элементов
+    int count_arr[max_element + 1];
+     for (int i = 0; i < max_element + 1; ++i) {
+        count_arr[i] = 0;
     }
 
     
-    // Создаем новый вектор для хранения результата
-    vector<int> result;
-    for (int num : arr) {
-        if (count_arr[num] != 2) {
-            result.push_back(num);
+    for (int i = 0; i < n; ++i) {
+        count_arr[arr[i]]++;
+    }
+
+    // Определяем новый размер массива result
+    int new_size = 0;
+    for (int i = 0; i < n; ++i) {
+        if (count_arr[arr[i]] != 2) {
+            new_size++;
         }
     }
-    
+
+  // Создаем новый массив для хранения результата
+    int result[new_size];
+    int index = 0;
+    for (int i = 0; i < n; ++i) {
+        if (count_arr[arr[i]] != 2) {
+            result[index++] = arr[i];
+        }
+    }
+
     // Выводим результат
     cout << "Массив после удаления элементов, встречающихся ровно два раза: ";
-    for (int num : result) {
-        cout << num << " ";
+    for (int i = 0; i < index; ++i) {
+        cout << result[i] << " ";
     }
-    cout << endl;
-    
+
     return 0;
 }

@@ -1,76 +1,83 @@
 #include <iostream>
-#include <vector>
 #include <cmath>
 #include <algorithm>
 
 using namespace std;
 
-// Структура точки
-struct Point {
-    double x, y;
-};
-
 // Функция для вычисления расстояния
-double distance(const Point& p1, const Point& p2) {
-    return sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+double distance(double x1, double y1, double x2, double y2) {
+    return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+}
+
+// Сортировка выбором
+void choice_sort(double* arr, int n) {
+    int min;
+
+    for (int i = 0; i < n - 1; i++) {
+        min = i;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[min]) min = j;
+        }
+
+        double temp = arr[min];
+        arr[min] = arr[i];
+        arr[i] = temp;
+    }
 }
 
 int main() {
     int N1, N2;
-    
-    // Вводим количество точек в множествах A и B
+
     cout << "Введите количество точек в множестве A: ";
     cin >> N1;
-    vector<Point> A(N1);
-    
+    double Ax[N1];
+    double Ay[N1];
+
     cout << "Введите точки множества A (x y): " << endl;
     for (int i = 0; i < N1; ++i) {
-        cin >> A[i].x >> A[i].y;
+        cin >> Ax[i] >> Ay[i];
     }
-    
+
     cout << "Введите количество точек в множестве B: ";
     cin >> N2;
-    vector<Point> B(N2);
-    
+    double Bx[N2];
+    double By[N2];
+
     cout << "Введите точки множества B (x y): " << endl;
     for (int i = 0; i < N2; ++i) {
-        cin >> B[i].x >> B[i].y;
+        cin >> Bx[i] >> By[i];
     }
-    
-    double max = 0;
-    Point maxPointA, maxPointB;
-    
+
+    double maxDist = 0;
+    int maxIdxA = 0, maxIdxB = 0;
+
     // Находим максимальное расстояние и его точки
-    for (Point pA : A) {
-        for (Point pB : B) {
-            double d = distance(pA, pB);
-            if (d > max) {
-                max = d;
-                maxPointA = pA;
-                maxPointB = pB;
+    for (int i = 0; i < N1; ++i) {
+        for (int j = 0; j < N2; ++j) {
+            double d = distance(Ax[i], Ay[i], Bx[j], By[j]);
+            if (d > maxDist) {
+                maxDist = d;
+                maxIdxA = i;
+                maxIdxB = j;
             }
         }
     }
-    
-    cout << "Максимальное расстояние: " << max << endl;
-    cout << "Между точками A(" << maxPointA.x << ", " << maxPointA.y << ") и B(" << maxPointB.x << ", " << maxPointB.y << ")" << endl;
-    
-    
+
+    cout << "Максимальное расстояние: " << maxDist << endl;
+    cout << "Между точками A(" << Ax[maxIdxA] << ", " << Ay[maxIdxA] << ") и B(" << Bx[maxIdxB] << ", " << By[maxIdxB] << ")" << endl;
+
     // Находим массив расстояний от найденной точки множества A до всех точек множества B
-    vector<double> distances;
-    for (Point pB : B) {
-        distances.push_back(distance(maxPointA, pB));
+    double distances[N2];
+    for (int i = 0; i < N2; ++i) {
+        distances[i] = distance(Ax[maxIdxA], Ay[maxIdxA], Bx[i], By[i]);
     }
-    
-    // Сортируем массив расстояний по возрастанию
-    sort(distances.begin(), distances.end());
-    
-    cout << "Массив расстояний от найденной точки A(" << maxPointA.x << ", " << maxPointA.y << ") до всех точек множества B:" << endl;
-    for (double d : distances) {
-        cout << d << " ";
+
+    choice_sort(distances, N2);
+
+    cout << "Массив расстояний от найденной точки A(" << Ax[maxIdxA] << ", " << Ay[maxIdxA] << ") до всех точек множества B:" << endl;
+    for (int i = 0; i < N2; ++i) {
+        cout << distances[i] << " ";
     }
     cout << endl;
-
-    
     return 0;
 }

@@ -51,7 +51,7 @@ bool findPrice(const PRICE prices[], int size, const string& productName, PRICE&
 
 int main() {
     // Количество записей
-    const int SIZE = 10;
+    const int SIZE = 3;
     PRICE prices[SIZE];
     
     // Ввод данных в массив структур
