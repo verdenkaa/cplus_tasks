@@ -15,7 +15,7 @@ class Vector {
         data.resize(size);
         srand(time(0));
         for (int i = 0; i < size; i++) {
-            data[i] = rand(); 
+            data[i] = rand() % 100; 
         }
     }
 
