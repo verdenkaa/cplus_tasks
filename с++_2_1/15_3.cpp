@@ -1,6 +1,8 @@
 #include <iostream>
 #include "15_3.h"
 
+using namespace std;
+
 int main() {
     Person person("Иван Иванов", "01.01.01");
     Student student("Иван Иванов 2", "02.02.02", "МГУ", "Информатика");
