@@ -21,14 +21,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_do_coffe_clicked()
 {
-    get_dark(1);
+    get_dark();
     ui->coffe_count->setValue(coffe);
 }
 
 
 void MainWindow::on_do_capu_clicked()
 {
-    get_capu(1);
+    get_capu();
     ui->coffe_count->setValue(coffe);
     ui->milk_count->setValue(milk);
 }

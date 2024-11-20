@@ -32,16 +32,26 @@ public:
     int capu_done = 0;
 
     // Сварить тёмный
-    void get_dark(int n){
-        dark_done++;
-        coffe = coffe - coffe_by_person;
+    void get_dark(){
+        if (coffe - coffe_by_person >= 0){
+            dark_done++;
+            coffe = coffe - coffe_by_person;}else{
+            QMessageBox::information(this, "Ошибка", "Недостаточно кофе!");
+        }
     }
 
     // Сварить копучино
-    void get_capu(int n){
-        capu_done++;
-        coffe = coffe - coffe_by_person;
-        milk = milk - milk_by_person;
+    void get_capu(){
+        if (coffe - coffe_by_person >= 0 && milk - milk_by_person >= 0){
+            capu_done++;
+            coffe = coffe - coffe_by_person;
+            milk = milk - milk_by_person;
+        }else if(coffe - coffe_by_person < 0){
+            QMessageBox::information(this, "Ошибка", "Недостаточно кофе!");
+        }else{
+            QMessageBox::information(this, "Ошибка", "Недостаточно молока!");
+        }
+
     }
 
     // Подсчет остатков
@@ -50,7 +60,7 @@ public:
         int capu_can = min(coffe / coffe_by_person, milk / milk_by_person);
 
         QString status = QString("Можно приготовить черного кофе %1 и капучино %2").arg(coffe_can).arg(capu_can);
-        QMessageBox::information(this, tr("Info"), status);
+        QMessageBox::information(this,  "Количество", status);
     }
 
 private slots:
