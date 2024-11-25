@@ -72,8 +72,6 @@ private slots:
 
     void on_milk_count_valueChanged();
 
-    void new_materials();
-
     void on_pushButton_clicked();
 
 

@@ -18,13 +18,13 @@ public:
     ~MainWindow();
 
 private slots:
-    void updateComboBoxes();               // Обновление списка QComboBox
-    void syncComboBoxes(const QString &text); // Синхронизация значений
+    void updateComboBoxes();
+    void syncComboBoxes(const QString &text);
     void clearComboBoxes();
 
 private:
-    Ui::MainWindow *ui;          // Указатель на UI форму
-    QVBoxLayout *listLayout;     // Макет для размещения QComboBox
+    Ui::MainWindow *ui;
+    QVBoxLayout *listLayout;
     std::vector<QComboBox *> comboBoxes; // Список QComboBox
 };
 

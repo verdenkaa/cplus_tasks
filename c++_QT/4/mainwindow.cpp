@@ -50,18 +50,18 @@ void CoffeeTableModel::deleteCoffeeMachine(int index) {
 
 // Данные
 QVariant CoffeeTableModel::data(const QModelIndex &index, int role) const {
-    if (role != Qt::DisplayRole)
-        return QVariant();
+    if (role == Qt::DisplayRole){ // без задания роли появляются чекбоксы
 
-    const CoffeeData &coffee = coffeeList[index.row()];
-    switch (index.column()) {
-    case 0: return coffee.name;
-    case 1: return coffee.coffee;
-    case 2: return coffee.milk;
-    case 3: return coffee.dark_done;
-    case 4: return coffee.capu_done;
-    default: return QVariant();
-    }
+        const CoffeeData coffee = coffeeList[index.row()];
+        switch (index.column()) {
+        case 0: return coffee.name;
+        case 1: return coffee.coffee;
+        case 2: return coffee.milk;
+        case 3: return coffee.dark_done;
+        case 4: return coffee.capu_done;
+        default: return QVariant();
+        }}
+    return QVariant(); // по умолчанию предлагается возвращать функцию даты
 }
 
 // Заголовки

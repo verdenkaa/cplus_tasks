@@ -45,20 +45,19 @@ void CoffeeTableModel::deleteCoffeeMachine(int index) {
     endRemoveRows();
 }
 
-// Данные
 QVariant CoffeeTableModel::data(const QModelIndex &index, int role) const {
-    if (role != Qt::DisplayRole)
-        return QVariant();
+    if (role == Qt::DisplayRole){ // без задания роли появляются чекбоксы
 
-    const CoffeeData &coffee = coffeeList[index.row()];
-    switch (index.column()) {
-    case 0: return coffee.name;
-    case 1: return coffee.coffee;
-    case 2: return coffee.milk;
-    case 3: return coffee.dark_done;
-    case 4: return coffee.capu_done;
-    default: return QVariant();
-    }
+        const CoffeeData coffee = coffeeList[index.row()];
+        switch (index.column()) {
+        case 0: return coffee.name;
+        case 1: return coffee.coffee;
+        case 2: return coffee.milk;
+        case 3: return coffee.dark_done;
+        case 4: return coffee.capu_done;
+        default: return QVariant();
+        }}
+    return QVariant(); // по умолчанию предлагается возвращать функцию даты
 }
 
 // Заголовки
@@ -91,7 +90,7 @@ MainWindow::~MainWindow() {
 }
 
 
-void MainWindow::on_pushButton_clicked() {
+void MainWindow::on_pushButton_clicked() { // добавление машины
     AddCoffeeDialog dialog(this);
     if (dialog.exec() == QDialog::Accepted) {
         CoffeeTableModel::CoffeeData newMachine = dialog.getCoffeeData();
@@ -100,7 +99,7 @@ void MainWindow::on_pushButton_clicked() {
 }
 
 
-void MainWindow::on_pushButton_2_clicked()
+void MainWindow::on_pushButton_2_clicked() // удаление машины
 {
     QMessageBox::StandardButton reply;
     reply = QMessageBox::question(this, "", "Уверены что хотите удалить строку?",
@@ -113,7 +112,7 @@ void MainWindow::on_pushButton_2_clicked()
 }
 
 
-void MainWindow::on_pushButton_3_clicked()
+void MainWindow::on_pushButton_3_clicked()  // очистка базы
 {
     QMessageBox::StandardButton reply;
     reply = QMessageBox::question(this, "", "Уверены что хотите очистить базу?",

@@ -11,7 +11,7 @@ AddCoffeeDialog::~AddCoffeeDialog() {
     delete ui;
 }
 
-CoffeeTableModel::CoffeeData AddCoffeeDialog::getCoffeeData() const {
+CoffeeTableModel::CoffeeData AddCoffeeDialog::getCoffeeData() const { // необходимо для получения доступа  таблице завести специальный метод
     CoffeeTableModel::CoffeeData data;
     data.name = ui->lineEditName->text();
     data.coffee = ui->spinBoxCoffee->value();

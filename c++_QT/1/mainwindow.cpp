@@ -45,16 +45,9 @@ void MainWindow::on_milk_count_valueChanged()
     milk = ui->milk_count->value();
 }
 
-void MainWindow::new_materials(){
-    coffe = ui->coffe_count->value();
-    milk = ui->milk_count->value();
-
-}
-
 
 void MainWindow::on_pushButton_clicked()
 {
-    new_materials();
     how_can_get();
 }
 

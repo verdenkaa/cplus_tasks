@@ -15,7 +15,7 @@ public:
     explicit AddCoffeeDialog(QWidget *parent = nullptr);
     ~AddCoffeeDialog();
 
-    // Метод для получения заполненной структуры
+    // Метод для получения структуры
     CoffeeTableModel::CoffeeData getCoffeeData() const;
 
     Ui::AddCoffeeDialog *ui;

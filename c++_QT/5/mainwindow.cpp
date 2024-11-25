@@ -37,9 +37,9 @@ void MainWindow::syncComboBoxes(const QString &text) {
     // Обновление всех QComboBox на выбранное значение
     for (QComboBox *comboBox : comboBoxes) {
         if (comboBox->currentText() != text) {
-            comboBox->blockSignals(true);  // Отключить сигналы, чтобы избежать рекурсии
+            comboBox->blockSignals(true);  // Отключить сигнал из-за рекурсии
             comboBox->setCurrentText(text);
-            comboBox->blockSignals(false); // Включить сигналы обратно
+            comboBox->blockSignals(false); // Включить сигнал
         }
     }
 }
