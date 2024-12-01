@@ -1,14 +1,11 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include <iostream>
-#include <QInputDialog>
-#include <QMessageBox>
-#include <QItemSelectionModel>
 #include "addcoffeedialog.h"
+#include <QMessageBox>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QHeaderView>
 
-// Конструктор модели
-CoffeeTableModel::CoffeeTableModel(QObject *parent):
-    QAbstractTableModel(parent) {
+CoffeeTableModel::CoffeeTableModel(QObject *parent) : QAbstractTableModel(parent) {
     coffeeList = {
         {"Кофемашина 1", 50, 0, 2, 5},
         {"Кофемашина 2", 40, 30, 1, 0},
@@ -23,7 +20,7 @@ int CoffeeTableModel::rowCount(const QModelIndex &) const {
 }
 
 int CoffeeTableModel::columnCount(const QModelIndex &) const {
-    return 5; // Имя, кофе, молоко, сделано черного, сделано капучино
+    return 5;
 }
 
 void CoffeeTableModel::addCoffeeMachine(const CoffeeData &newMachine) {
@@ -34,9 +31,9 @@ void CoffeeTableModel::addCoffeeMachine(const CoffeeData &newMachine) {
 }
 
 void CoffeeTableModel::clearCoffeeMachine() {
-    beginRemoveRows(QModelIndex(), 0, coffeeList.size());
-    coffeeList.remove(0, coffeeList.size());
-    endRemoveRows();
+    beginResetModel();
+    coffeeList.clear();
+    endResetModel();
 }
 
 void CoffeeTableModel::deleteCoffeeMachine(int index) {
@@ -46,9 +43,8 @@ void CoffeeTableModel::deleteCoffeeMachine(int index) {
 }
 
 QVariant CoffeeTableModel::data(const QModelIndex &index, int role) const {
-    if (role == Qt::DisplayRole){ // без задания роли появляются чекбоксы
-
-        const CoffeeData coffee = coffeeList[index.row()];
+    if (role == Qt::DisplayRole) {
+        const CoffeeData &coffee = coffeeList[index.row()];
         switch (index.column()) {
         case 0: return coffee.name;
         case 1: return coffee.coffee;
@@ -56,13 +52,13 @@ QVariant CoffeeTableModel::data(const QModelIndex &index, int role) const {
         case 3: return coffee.dark_done;
         case 4: return coffee.capu_done;
         default: return QVariant();
-        }}
-    return QVariant(); // по умолчанию предлагается возвращать функцию даты
+        }
+    }
+    return QVariant();
 }
 
-// Заголовки
 QVariant CoffeeTableModel::headerData(int section, Qt::Orientation orientation, int role) const {
-    if (orientation == Qt::Horizontal && role == Qt::DisplayRole) {
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal) {
         switch (section) {
         case 0: return "Имя кофемашины";
         case 1: return "Кофе осталось";
@@ -75,50 +71,77 @@ QVariant CoffeeTableModel::headerData(int section, Qt::Orientation orientation, 
     return QVariant();
 }
 
-
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    tableModel(new CoffeeTableModel(this)) {
-    ui->setupUi(this);
-    ui->tableView->setModel(tableModel);
-    ui->tableView->resizeColumnsToContents();
+    : QMainWindow(parent), tableModel(new CoffeeTableModel(this)) {
+    // Центральный виджет
+    QWidget *centralWidget = new QWidget(this);
+    setCentralWidget(centralWidget);
+
+    // Таблица
+    tableView = new QTableView(this);
+    tableView->setModel(tableModel);
+    tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    // Кнопки
+    addButton = new QPushButton("Добавить машину", this);
+    deleteButton = new QPushButton("Удалить машину", this);
+    clearButton = new QPushButton("Очистить поле", this);
+
+    // Метка
+    label = new QLabel("Список кофемашин", this);
+
+    // Подключение сигналов
+    connect(addButton, QPushButton::clicked, this, MainWindow::onAddMachineClicked);
+    connect(deleteButton, QPushButton::clicked, this, MainWindow::onDeleteMachineClicked);
+    connect(clearButton, QPushButton::clicked, this, MainWindow::onClearFieldClicked);
+
+    // Макеты
+    QVBoxLayout *mainLayout = new QVBoxLayout();
+    mainLayout->addWidget(label);
+    mainLayout->addWidget(tableView);
+
+    QHBoxLayout *buttonLayout = new QHBoxLayout();
+    buttonLayout->addWidget(addButton);
+    buttonLayout->addWidget(deleteButton);
+    buttonLayout->addWidget(clearButton);
+
+    mainLayout->addLayout(buttonLayout);
+    centralWidget->setLayout(mainLayout);
+
+    // Установка размера окна
+    resize(800, 600);
+    setWindowTitle("MainWindow");
 }
 
-MainWindow::~MainWindow() {
-    delete ui;
-}
 
+MainWindow::~MainWindow() {}
 
-void MainWindow::on_pushButton_clicked() { // добавление машины
+void MainWindow::onAddMachineClicked() {
     AddCoffeeDialog dialog(this);
     if (dialog.exec() == QDialog::Accepted) {
         CoffeeTableModel::CoffeeData newMachine = dialog.getCoffeeData();
-        tableModel->addCoffeeMachine(newMachine); // Добавляем через метод модели
+        tableModel->addCoffeeMachine(newMachine);
     }
 }
 
-
-void MainWindow::on_pushButton_2_clicked() // удаление машины
-{
+void MainWindow::onDeleteMachineClicked() {
     QMessageBox::StandardButton reply;
     reply = QMessageBox::question(this, "", "Уверены что хотите удалить строку?",
-                                  QMessageBox::Yes|QMessageBox::No);
+                                  QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes) {
-        QModelIndexList indexes = ui->tableView->selectionModel()->selectedRows();
-        int index = indexes.first().row();
-        tableModel->deleteCoffeeMachine(index);
+        QModelIndexList indexes = tableView->selectionModel()->selectedRows();
+        if (!indexes.isEmpty()) {
+            int index = indexes.first().row();
+            tableModel->deleteCoffeeMachine(index);
+        }
     }
 }
 
-
-void MainWindow::on_pushButton_3_clicked()  // очистка базы
-{
+void MainWindow::onClearFieldClicked() {
     QMessageBox::StandardButton reply;
     reply = QMessageBox::question(this, "", "Уверены что хотите очистить базу?",
-                                  QMessageBox::Yes|QMessageBox::No);
+                                  QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes) {
         tableModel->clearCoffeeMachine();
     }
 }
-

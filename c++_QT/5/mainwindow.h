@@ -2,13 +2,12 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QComboBox>
+#include <QScrollArea>
+#include <QSpinBox>
+#include <QPushButton>
 #include <QVBoxLayout>
 #include <vector>
-
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
+#include <QComboBox>
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -23,9 +22,12 @@ private slots:
     void clearComboBoxes();
 
 private:
-    Ui::MainWindow *ui;
+    QScrollArea *scrollArea;
+    QSpinBox *spinBox;
+    QPushButton *updateButton;
     QVBoxLayout *listLayout;
-    std::vector<QComboBox *> comboBoxes; // Список QComboBox
+    QWidget *scrollContent;
+    std::vector<QComboBox*> comboBoxes; // Список QComboBox
 };
 
 #endif // MAINWINDOW_H

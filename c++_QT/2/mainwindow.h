@@ -38,7 +38,6 @@ public:
     ~MainWindow();
 
 private:
-    Ui::MainWindow *ui;
     CoffeeTableModel *tableModel;
 };
 

@@ -1,22 +1,44 @@
 #include "addcoffeedialog.h"
-#include "ui_addcoffeedialog.h"
+#include <QVBoxLayout>
+#include <QFormLayout>
 
-AddCoffeeDialog::AddCoffeeDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::AddCoffeeDialog) {
-    ui->setupUi(this);
+AddCoffeeDialog::AddCoffeeDialog(QWidget *parent)
+    : QDialog(parent) {
+    lineEditName = new QLineEdit(this);
+    spinBoxCoffee = new QSpinBox(this);
+    spinBoxMilk = new QSpinBox(this);
+    spinBoxDarkDone = new QSpinBox(this);
+    spinBoxCapuDone = new QSpinBox(this);
+
+    // кнопки OK и Cancel
+    buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
+    connect(buttonBox, QDialogButtonBox::accepted, this, QDialog::accept);
+    connect(buttonBox, QDialogButtonBox::rejected, this, QDialog::reject);
+
+    // Создаем макет для формы
+    QFormLayout *formLayout = new QFormLayout();
+    formLayout->addRow("Название:", lineEditName);
+    formLayout->addRow("Кофе осталось:", spinBoxCoffee);
+    formLayout->addRow("Молоко осталось:", spinBoxMilk);
+    formLayout->addRow("Черного кофе сделано:", spinBoxDarkDone);
+    formLayout->addRow("Капучино сделано:", spinBoxCapuDone);
+
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    mainLayout->addLayout(formLayout);
+    mainLayout->addWidget(buttonBox);
+
+    setLayout(mainLayout);
 }
 
 AddCoffeeDialog::~AddCoffeeDialog() {
-    delete ui;
 }
 
 CoffeeTableModel::CoffeeData AddCoffeeDialog::getCoffeeData() const {
     CoffeeTableModel::CoffeeData data;
-    data.name = ui->lineEditName->text();
-    data.coffee = ui->spinBoxCoffee->value();
-    data.milk = ui->spinBoxMilk->value();
-    data.dark_done = ui->spinBoxDarkDone->value();
-    data.capu_done = ui->spinBoxCapuDone->value();
+    data.name = lineEditName->text();
+    data.coffee = spinBoxCoffee->value();
+    data.milk = spinBoxMilk->value();
+    data.dark_done = spinBoxDarkDone->value();
+    data.capu_done = spinBoxCapuDone->value();
     return data;
 }

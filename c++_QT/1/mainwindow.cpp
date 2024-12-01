@@ -1,53 +1,84 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include <iostream>
-using namespace std;
+#include <QSpinBox>
+#include <QPushButton>
+#include <QLabel>
+#include <QGridLayout>
+#include <QMenuBar>
+#include <QStatusBar>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
-{
-    ui->setupUi(this);
+    : QMainWindow(parent), coffe(10), milk(10) {
+    // центральный виджет
+    QWidget *centralWidget = new QWidget(this);
+    setCentralWidget(centralWidget);
 
-    ui->coffe_count->setValue(coffe);
-    ui->milk_count->setValue(milk);
+    // сетка
+    QGridLayout *gridLayout = new QGridLayout();
 
+    // Количество кофе
+    QLabel *labelCoffee = new QLabel("Количество кофе", centralWidget);
+    gridLayout->addWidget(labelCoffee, 1, 0);
+
+    // ввод кофе
+    coffeeCount = new QSpinBox(centralWidget);
+    coffeeCount->setValue(coffe);
+    gridLayout->addWidget(coffeeCount, 1, 1);
+
+    // Количество молока
+    QLabel *labelMilk = new QLabel("Количество молока", centralWidget);
+    gridLayout->addWidget(labelMilk, 2, 0);
+
+    // ввод молока
+    milkCount = new QSpinBox(centralWidget);
+    milkCount->setValue(milk);
+    gridLayout->addWidget(milkCount, 2, 1);
+
+    // Сварить черный кофе
+    QPushButton *doCoffeeButton = new QPushButton("Сварить черный кофе", centralWidget);
+    connect(doCoffeeButton, QPushButton::clicked, this, MainWindow::on_do_coffe_clicked);
+    gridLayout->addWidget(doCoffeeButton, 3, 0);
+
+    // Сварить капучино
+    QPushButton *doCapuButton = new QPushButton("Сварить капучино", centralWidget);
+    connect(doCapuButton, QPushButton::clicked, this, MainWindow::on_do_capu_clicked);
+    gridLayout->addWidget(doCapuButton, 3, 1);
+
+    // Сколько осталось
+    QPushButton *statusButton = new QPushButton("Сколько осталось", centralWidget);
+    connect(statusButton, QPushButton::clicked, this, MainWindow::on_pushButton_clicked);
+    gridLayout->addWidget(statusButton, 4, 0);
+
+    // Установка сетки
+    centralWidget->setLayout(gridLayout);
+
+    // сигналы изменения значений
+    connect(coffeeCount, qOverload<int>(QSpinBox::valueChanged), this, MainWindow::on_coffe_count_valueChanged);
+    connect(milkCount, qOverload<int>(QSpinBox::valueChanged), this, MainWindow::on_milk_count_valueChanged);
+
+    resize(350, 200);
 }
 
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
+MainWindow::~MainWindow() {}
 
-void MainWindow::on_do_coffe_clicked()
-{
+void MainWindow::on_do_coffe_clicked() {
     get_dark();
-    ui->coffe_count->setValue(coffe);
+    coffeeCount->setValue(coffe);
 }
 
-
-void MainWindow::on_do_capu_clicked()
-{
+void MainWindow::on_do_capu_clicked() {
     get_capu();
-    ui->coffe_count->setValue(coffe);
-    ui->milk_count->setValue(milk);
+    coffeeCount->setValue(coffe);
+    milkCount->setValue(milk);
 }
 
-
-void MainWindow::on_coffe_count_valueChanged()
-{
-    coffe = ui->coffe_count->value();
+void MainWindow::on_coffe_count_valueChanged() {
+    coffe = coffeeCount->value();
 }
 
-
-void MainWindow::on_milk_count_valueChanged()
-{
-    milk = ui->milk_count->value();
+void MainWindow::on_milk_count_valueChanged() {
+    milk = milkCount->value();
 }
 
-
-void MainWindow::on_pushButton_clicked()
-{
+void MainWindow::on_pushButton_clicked() {
     how_can_get();
 }
-

@@ -17,9 +17,7 @@ HEADERS += \
     addcoffeedialog.h \
     mainwindow.h
 
-FORMS += \
-    addcoffeedialog.ui \
-    mainwindow.ui
+FORMS +=
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

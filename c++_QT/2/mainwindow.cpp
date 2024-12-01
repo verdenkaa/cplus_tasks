@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <iostream>
+#include <QTableView>
+#include <QLabel>
+#include <QVBoxLayout>
 
 // Конструктор модели
 CoffeeTableModel::CoffeeTableModel(QObject *parent)
@@ -56,14 +59,26 @@ QVariant CoffeeTableModel::headerData(int section, Qt::Orientation orientation, 
 
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    tableModel(new CoffeeTableModel(this)) {
-    ui->setupUi(this);
-    ui->tableView->setModel(tableModel);
-    ui->tableView->resizeColumnsToContents();
+    : QMainWindow(parent), tableModel(new CoffeeTableModel(this)) {
+    // Центральный виджет
+    QWidget *centralWidget = new QWidget(this);
+    setCentralWidget(centralWidget);
+
+    // Заголовок
+    QLabel *titleLabel = new QLabel("Список кофемашин", this);
+
+    // Таблица
+    QTableView *tableView = new QTableView(this);
+    tableView->setModel(tableModel);
+    tableView->resizeColumnsToContents();
+
+    // Расположение виджетов
+    QVBoxLayout *layout = new QVBoxLayout();
+    layout->addWidget(titleLabel);
+    layout->addWidget(tableView);
+    centralWidget->setLayout(layout);
+
+    resize(800, 600);
 }
 
-MainWindow::~MainWindow() {
-    delete ui;
-}
+MainWindow::~MainWindow() {}

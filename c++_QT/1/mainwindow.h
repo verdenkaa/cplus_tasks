@@ -7,6 +7,7 @@
 #include <iostream>
 #include <algorithm>
 #include <string>
+#include <QSpinBox>
 
 using namespace std;
 
@@ -76,6 +77,7 @@ private slots:
 
 
 private:
-    Ui::MainWindow *ui;
+    QSpinBox *coffeeCount;
+    QSpinBox *milkCount;
 };
 #endif // MAINWINDOW_H
