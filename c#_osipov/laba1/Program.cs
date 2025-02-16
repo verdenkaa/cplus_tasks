@@ -6,8 +6,9 @@ namespace laba1
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new nForm());
+            //Application.Run(new nForm());
             //Application.Run(new Form1());
+            Application.Run(new MdiApplication());
         }
     }
 }

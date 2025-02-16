@@ -17,36 +17,36 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Количество кофе
     QLabel *labelCoffee = new QLabel("Количество кофе", centralWidget);
-    gridLayout->addWidget(labelCoffee, 1, 0);
+    gridLayout->addWidget(labelCoffee, 0, 0);
 
     // ввод кофе
     coffeeCount = new QSpinBox(centralWidget);
     coffeeCount->setValue(coffe);
-    gridLayout->addWidget(coffeeCount, 1, 1);
+    gridLayout->addWidget(coffeeCount, 0, 1);
 
     // Количество молока
     QLabel *labelMilk = new QLabel("Количество молока", centralWidget);
-    gridLayout->addWidget(labelMilk, 2, 0);
+    gridLayout->addWidget(labelMilk, 1, 0);
 
     // ввод молока
     milkCount = new QSpinBox(centralWidget);
     milkCount->setValue(milk);
-    gridLayout->addWidget(milkCount, 2, 1);
+    gridLayout->addWidget(milkCount, 1, 1);
 
     // Сварить черный кофе
     QPushButton *doCoffeeButton = new QPushButton("Сварить черный кофе", centralWidget);
     connect(doCoffeeButton, QPushButton::clicked, this, MainWindow::on_do_coffe_clicked);
-    gridLayout->addWidget(doCoffeeButton, 3, 0);
+    gridLayout->addWidget(doCoffeeButton, 2, 0);
 
     // Сварить капучино
     QPushButton *doCapuButton = new QPushButton("Сварить капучино", centralWidget);
     connect(doCapuButton, QPushButton::clicked, this, MainWindow::on_do_capu_clicked);
-    gridLayout->addWidget(doCapuButton, 3, 1);
+    gridLayout->addWidget(doCapuButton, 2, 1);
 
     // Сколько осталось
     QPushButton *statusButton = new QPushButton("Сколько осталось", centralWidget);
     connect(statusButton, QPushButton::clicked, this, MainWindow::on_pushButton_clicked);
-    gridLayout->addWidget(statusButton, 4, 0);
+    gridLayout->addWidget(statusButton, 3, 0);
 
     // Установка сетки
     centralWidget->setLayout(gridLayout);
