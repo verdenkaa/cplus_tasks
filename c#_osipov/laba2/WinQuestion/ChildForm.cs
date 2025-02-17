@@ -30,5 +30,10 @@ namespace laba1
                 ChildTextBox.ForeColor = System.Drawing.Color.Blue;
             }
         }
+
+        private void ChildForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

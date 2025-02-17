@@ -1,0 +1,17 @@
+D:\Code\cplus_tasks\c#_osipov\laba4\laba4\bin\Debug\net8.0-windows\laba4.exe
+D:\Code\cplus_tasks\c#_osipov\laba4\laba4\bin\Debug\net8.0-windows\laba4.deps.json
+D:\Code\cplus_tasks\c#_osipov\laba4\laba4\bin\Debug\net8.0-windows\laba4.runtimeconfig.json
+D:\Code\cplus_tasks\c#_osipov\laba4\laba4\bin\Debug\net8.0-windows\laba4.dll
+D:\Code\cplus_tasks\c#_osipov\laba4\laba4\bin\Debug\net8.0-windows\laba4.pdb
+D:\Code\cplus_tasks\c#_osipov\laba4\laba4\obj\Debug\net8.0-windows\laba4.TestStandartDialog.resources
+D:\Code\cplus_tasks\c#_osipov\laba4\laba4\obj\Debug\net8.0-windows\laba4.csproj.GenerateResource.cache
+D:\Code\cplus_tasks\c#_osipov\laba4\laba4\obj\Debug\net8.0-windows\laba4.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\cplus_tasks\c#_osipov\laba4\laba4\obj\Debug\net8.0-windows\laba4.AssemblyInfoInputs.cache
+D:\Code\cplus_tasks\c#_osipov\laba4\laba4\obj\Debug\net8.0-windows\laba4.AssemblyInfo.cs
+D:\Code\cplus_tasks\c#_osipov\laba4\laba4\obj\Debug\net8.0-windows\laba4.csproj.CoreCompileInputs.cache
+D:\Code\cplus_tasks\c#_osipov\laba4\laba4\obj\Debug\net8.0-windows\laba4.sourcelink.json
+D:\Code\cplus_tasks\c#_osipov\laba4\laba4\obj\Debug\net8.0-windows\laba4.dll
+D:\Code\cplus_tasks\c#_osipov\laba4\laba4\obj\Debug\net8.0-windows\refint\laba4.dll
+D:\Code\cplus_tasks\c#_osipov\laba4\laba4\obj\Debug\net8.0-windows\laba4.pdb
+D:\Code\cplus_tasks\c#_osipov\laba4\laba4\obj\Debug\net8.0-windows\laba4.genruntimeconfig.cache
+D:\Code\cplus_tasks\c#_osipov\laba4\laba4\obj\Debug\net8.0-windows\ref\laba4.dll

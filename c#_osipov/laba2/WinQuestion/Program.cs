@@ -15,10 +15,10 @@ namespace WinQuestion
             ApplicationConfiguration.Initialize();
             //Application.Run(new Form1());
             //Application.Run(new Form2());
-            //Application.Run(new MdiApplication());
+            Application.Run(new MdiApplication());
             //Application.Run(new WinContainer());
             //Application.Run(new WinLinkLabel());
-            Application.Run(new RegistrationForm());
+            //Application.Run(new RegistrationForm());
         }
     }
 }

@@ -66,7 +66,7 @@
             // ToggleMenuItem
             // 
             ToggleMenuItem.Name = "ToggleMenuItem";
-            ToggleMenuItem.Size = new Size(224, 26);
+            ToggleMenuItem.Size = new Size(219, 26);
             ToggleMenuItem.Text = "Toggle Foreground";
             ToggleMenuItem.Click += ToggleMenuItem_Click;
             // 
@@ -80,6 +80,7 @@
             MainMenuStrip = ChildWindowMenu;
             Name = "ChildForm";
             Text = "ChildForm";
+            Load += ChildForm_Load;
             ChildWindowMenu.ResumeLayout(false);
             ChildWindowMenu.PerformLayout();
             ResumeLayout(false);
