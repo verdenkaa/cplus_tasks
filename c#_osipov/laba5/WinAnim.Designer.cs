@@ -73,6 +73,7 @@
             Controls.Add(btnAW_BLEND);
             Name = "WinAnim";
             Text = "Анимация формы";
+            Load += WinAnim_Load;
             ResumeLayout(false);
         }
 

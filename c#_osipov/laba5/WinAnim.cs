@@ -55,5 +55,10 @@ namespace laba5
             this.btnHOR_AW_SLIDE.Invalidate();
             this.btnCenter_AW_SLIDE.Invalidate();
         }
+
+        private void WinAnim_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
