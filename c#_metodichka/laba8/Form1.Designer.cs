@@ -1,4 +1,4 @@
-﻿namespace laba7
+﻿namespace laba8
 {
     partial class Form1
     {
@@ -28,39 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            listBox1 = new ListBox();
-            listBox2 = new ListBox();
+            dataGridView1 = new DataGridView();
             button1 = new Button();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
-            // listBox1
+            // dataGridView1
             // 
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 15;
-            listBox1.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" });
-            listBox1.Location = new Point(10, 28);
-            listBox1.Margin = new Padding(3, 2, 3, 2);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(190, 199);
-            listBox1.TabIndex = 0;
-            // 
-            // listBox2
-            // 
-            listBox2.FormattingEnabled = true;
-            listBox2.ItemHeight = 15;
-            listBox2.Location = new Point(216, 28);
-            listBox2.Margin = new Padding(3, 2, 3, 2);
-            listBox2.Name = "listBox2";
-            listBox2.Size = new Size(215, 199);
-            listBox2.TabIndex = 1;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(9, 10);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(344, 344);
+            dataGridView1.TabIndex = 0;
             // 
             // button1
             // 
-            button1.Location = new Point(15, 267);
+            button1.Location = new Point(256, 367);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
-            button1.TabIndex = 2;
-            button1.Text = "Посчитать";
+            button1.TabIndex = 1;
+            button1.Text = "Обновить";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -68,20 +55,18 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(441, 338);
+            ClientSize = new Size(363, 402);
             Controls.Add(button1);
-            Controls.Add(listBox2);
-            Controls.Add(listBox1);
-            Margin = new Padding(3, 2, 3, 2);
+            Controls.Add(dataGridView1);
             Name = "Form1";
             Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private ListBox listBox1;
-        private ListBox listBox2;
+        private DataGridView dataGridView1;
         private Button button1;
     }
 }

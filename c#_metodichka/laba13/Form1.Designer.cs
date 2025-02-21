@@ -1,4 +1,4 @@
-﻿namespace laba7
+﻿namespace laba13
 {
     partial class Form1
     {
@@ -28,60 +28,55 @@
         /// </summary>
         private void InitializeComponent()
         {
-            listBox1 = new ListBox();
-            listBox2 = new ListBox();
             button1 = new Button();
+            listBox1 = new ListBox();
+            textBox1 = new TextBox();
             SuspendLayout();
+            // 
+            // button1
+            // 
+            button1.Location = new Point(121, 362);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 0;
+            button1.Text = "Заменить";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 15;
-            listBox1.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" });
-            listBox1.Location = new Point(10, 28);
-            listBox1.Margin = new Padding(3, 2, 3, 2);
+            listBox1.Location = new Point(8, 12);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(190, 199);
-            listBox1.TabIndex = 0;
+            listBox1.Size = new Size(322, 334);
+            listBox1.TabIndex = 1;
             // 
-            // listBox2
+            // textBox1
             // 
-            listBox2.FormattingEnabled = true;
-            listBox2.ItemHeight = 15;
-            listBox2.Location = new Point(216, 28);
-            listBox2.Margin = new Padding(3, 2, 3, 2);
-            listBox2.Name = "listBox2";
-            listBox2.Size = new Size(215, 199);
-            listBox2.TabIndex = 1;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(15, 267);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 2;
-            button1.Text = "Посчитать";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            textBox1.Location = new Point(15, 363);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(100, 23);
+            textBox1.TabIndex = 2;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(441, 338);
-            Controls.Add(button1);
-            Controls.Add(listBox2);
+            ClientSize = new Size(342, 450);
+            Controls.Add(textBox1);
             Controls.Add(listBox1);
-            Margin = new Padding(3, 2, 3, 2);
+            Controls.Add(button1);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private ListBox listBox1;
-        private ListBox listBox2;
         private Button button1;
+        private ListBox listBox1;
+        private TextBox textBox1;
     }
 }
